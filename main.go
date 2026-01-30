@@ -29,6 +29,10 @@ func authHandler(hooker *Hooker) http.HandlerFunc {
 		username := r.FormValue("username")
 		password := r.FormValue("password")
 
+		if username == "" || password == "" {
+			return
+		}
+
 		log.Printf("Got username=%s and password=%s", username, password)
 
 		ok := username == hooker.mqttUsername && password == hooker.mqttPassword
